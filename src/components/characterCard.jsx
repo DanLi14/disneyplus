@@ -140,3 +140,5 @@ const characterCard = (data) => {
         </div>
     );
 }
+
+export default characterCard;
