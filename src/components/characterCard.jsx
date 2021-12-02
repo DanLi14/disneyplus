@@ -1,15 +1,35 @@
 const characterCard = (data) => {
+    //This takes the character JSON object produced by https://api.disneyapi.dev/characters/:{id}
+
+    //And will explicitly call JSON tags within it. I don't think stringifying it matters?
+
+    //This would ALSO work with something like this:
+    /**
+     *  response.json()
+            .then((data) => {
+                for (let obj of data) {
+                    console.log(obj);
+                    makeCard(obj);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+     */
+    //But that's using a fetch request with all the baggage it entails.
+
 
     const imageData = data.imageURL;
-
     const charURL = data.sourceURL;
-
     const charName = data.name;
+    //These three just pass directly in. They're.. clean so to speak.
 
+    //The rest use functions for it explicitly.
     const checkFilms = (data) => {
         if (data.films != "[]") {
             return <li><p>Films: None</p></li>
         }
+        //These functions do create the HTML tags though!
         else {
             return <li><p>Films: { data.films }</p></li>
         }
@@ -86,7 +106,7 @@ const characterCard = (data) => {
 
     const enemies = checkEnemies(data);
 
-
+    //It then just returns the full card within a div, which uses bootstrap.
     return (
         <div>
             <article class="card mb-3 ms-3 me-3">
