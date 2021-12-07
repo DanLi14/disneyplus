@@ -1,4 +1,4 @@
-const characterCard = (data) => {
+const characterCard = (list) => {
     //This takes the character JSON object produced by https://api.disneyapi.dev/characters/:{id}
 
     //And will explicitly call JSON tags within it. I don't think stringifying it matters?
@@ -6,8 +6,8 @@ const characterCard = (data) => {
     //This would ALSO work with something like this:
     /**
      *  response.json()
-            .then((data) => {
-                for (let obj of data) {
+            .then((list) => {
+                for (let obj of list) {
                     console.log(obj);
                     makeCard(obj);
                 }
@@ -19,97 +19,169 @@ const characterCard = (data) => {
     //But that's using a fetch request with all the baggage it entails.
 
 
-    const imageData = data.imageURL;
-    const charURL = data.sourceURL;
-    const charName = data.name;
-    //These three just pass directly in. They're.. clean so to speak.
+    // const imageData = list.imageURL;
+    // const charURL = list.sourceURL;
+    // const charName = list.name;
+    // //These three just pass directly in. They're.. clean so to speak.
 
-    //The rest use functions for it explicitly.
-    const checkFilms = (data) => {
-        if (data.films != "[]") {
-            return <li><p>Films: None</p></li>
-        }
-        //These functions do create the HTML tags though!
-        else {
-            return <li><p>Films: { data.films }</p></li>
-        }
-    }
+    // //The rest use functions for it explicitly.
+    // const checkFilms = (list) => {
+    //     if (list.films !== "[]") {
+    //         return <li><p>Films: None</p></li>
+    //     }
+    //     //These functions do create the HTML tags though!
+    //     else {
+    //         return <li><p>Films: { list.films }</p></li>
+    //     }
+    // }
 
-    const films = checkFilms(data);
+    // const films = checkFilms(list);
 
-    const checkShortFilms = (data) => {
-        if (data.shortFilms = "[]") {
-            return <li><p>Short Films: None</p></li>
-        }
-        else {
-            return <li><p>Short Films: {data.shortFilms}</p></li>
-        }
-    }
-    
-    const shortFilms = checkShortFilms(data);
+    // const checkShortFilms = (list) => {
+    //     if (list.shortFilms !== "[]") {
+    //         return <li><p>Short Films: None</p></li>
+    //     }
+    //     else {
+    //         return <li><p>Short Films: {list.shortFilms}</p></li>
+    //     }
+    // }
+
+    // const shortFilms = checkShortFilms(list);
 
 
-    const checkTvShows = (data) => {
-        if (data.tvShows = "[]") {
-            return <li><p>Tv Shows: None</p></li>
-        }
-        else {
-            return <li><p>Tv shows: {data.tvShows}</p></li>
-        }
-    }
+    // const checkTvShows = (list) => {
+    //     if (list.tvShows !== "[]") {
+    //         return <li><p>Tv Shows: None</p></li>
+    //     }
+    //     else {
+    //         return <li><p>Tv shows: {list.tvShows}</p></li>
+    //     }
+    // }
 
-    const tvShows = checkTvShows(data);
+    // const tvShows = checkTvShows(list);
 
-    const checkVideoGames = (data) => {
-        if (data.videoGames = "[]") {
-            return <li><p>Video Games: None</p></li>
-        }
-        else {
-            return <li><p>Video Games: {data.videoGames}</p></li>
-        }
-    }
+    // const checkVideoGames = (list) => {
+    //     if (list.videoGames !== "[]") {
+    //         return <li><p>Video Games: None</p></li>
+    //     }
+    //     else {
+    //         return <li><p>Video Games: {list.videoGames}</p></li>
+    //     }
+    // }
 
-    const videoGames = checkVideoGames(data);
+    // const videoGames = checkVideoGames(list);
 
-    const checkParkAttractions = (data) => {
-        if (data.parkAttractions = "[]") {
-            return <li><p>Disneyland attractions: None</p></li>
-        }
-        else {
-            return <li><p>Disneyland attractions: {data.parkAttractions}</p></li>
-        }
-    }
+    // const checkParkAttractions = (list) => {
+    //     if (list.parkAttractions !== "[]") {
+    //         return <li><p>Disneyland attractions: None</p></li>
+    //     }
+    //     else {
+    //         return <li><p>Disneyland attractions: {list.parkAttractions}</p></li>
+    //     }
+    // }
 
-    const parkAttractions = checkParkAttractions(data);
+    // const parkAttractions = checkParkAttractions(list);
 
-    const checkAllies = (data) => {
-        if (data.allies = "[]") {
-            return <li><p>Allies: None</p></li>
-        }
-        else {
-            return <li><p>Allies: {data.allies}</p></li>
-        }
+    // const checkAllies = (list) => {
+    //     if (list.allies !== "[]") {
+    //         return <li><p>Allies: None</p></li>
+    //     }
+    //     else {
+    //         return <li><p>Allies: {list.allies}</p></li>
+    //     }
 
-    }
+    // }
 
-    const allies = checkAllies(data);
+    // const allies = checkAllies(list);
 
-    const checkEnemies = (data) => {
-        if (data.enemies = "[]") {
-            return <li><p>Enemies: None</p></li>
-        }
-        else {
-            return <li><p>Enemies: {data.enemies}</p></li>
-        }
+    // const checkEnemies = (list) => {
+    //     if (list.enemies !== "[]") {
+    //         return <li><p>Enemies: None</p></li>
+    //     }
+    //     else {
+    //         return <li><p>Enemies: {list.enemies}</p></li>
+    //     }
 
-    }
+    // }
 
-    const enemies = checkEnemies(data);
+    // const enemies = checkEnemies(list);
 
     //It then just returns the full card within a div, which uses bootstrap.
+
+    console.log(list)
+
+    //   const getData = list.map(c =>
+    //           <article class="card mb-3 ms-3 me-3">
+    //           <div class="row">
+    //               <section class="col-md-3">
+    //                     <img
+    //                         class="image-size"
+    //                         style={{ height: '300px', width: '300px' }}
+    //                         src={c.imageUrl}
+    //                         alt={c.name}
+    //                     />
+    //               </section>
+    //               <section class="col-md-9">
+    //                   <div class="card-body">
+    //                       <ul>
+    //                           <li><p>Character name: {c.name}</p></li>
+    //                             {c.films}
+    //                             {c.shortFilms}
+    //                             {c.tvShows}
+    //                             {c.videoGames}
+    //                             {c.allies}
+    //                             {c.parkAttractions}
+    //                             {c.enemies}
+    //                           <li><a href={c.sourceUrl}>Learn more here!</a></li>
+    //                         </ul>
+    //                     </div>
+    //                 </section>
+    //             </div>
+    //           </article>
+    //       )
+
+    //       {
+    //     filteredList.map((tempVal) => (
+    //       <div key={tempVal.id}>
+    //         <h3>{tempVal.title}</h3>
+    //         <input type="checkbox" checked={tempVal.completed} />
+    //       </div>
+    //     ))
+    //   }
+
+
     return (
         <div>
-            <article class="card mb-3 ms-3 me-3">
+            {/* {list.map((c) => (
+              <article class="card mb-3 ms-3 me-3">
+              <div class="row">
+                  <section class="col-md-3">
+                        <img
+                            class="image-size"
+                            style={{ height: '300px', width: '300px' }}
+                            src={c.imageUrl}
+                            alt={c.name}
+                        />
+                  </section>
+                  <section class="col-md-9">
+                      <div class="card-body">
+                          <ul>
+                              <li><p>Character name: {c.name}</p></li>
+                                {c.films}
+                                {c.shortFilms}
+                                {c.tvShows}
+                                {c.videoGames}
+                                {c.allies}
+                                {c.parkAttractions}
+                                {c.enemies}
+                              <li><a href={c.sourceUrl}>Learn more here!</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                </div>
+              </article>)
+          )} */}
+            {/* <article class="card mb-3 ms-3 me-3">
                 <div class="row">
                     <section class="col-md-3">
                         <img
@@ -123,7 +195,6 @@ const characterCard = (data) => {
                         <div class="card-body">
                             <ul>
                                 <li><p>Character name: {charName}</p></li>
-                                <li><p></p></li>
                                 {films}
                                 {shortFilms}
                                 {tvShows}
@@ -136,7 +207,7 @@ const characterCard = (data) => {
                         </div>
                     </section>
                 </div>
-            </article>
+            </article> */}
         </div>
     );
 }

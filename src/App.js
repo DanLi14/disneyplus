@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import Search from './search';
+import SearchPage from './components/SearchPage';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Search />
+      <SearchPage />
     </div>
   );
 }
